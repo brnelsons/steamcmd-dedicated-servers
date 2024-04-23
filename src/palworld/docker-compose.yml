@@ -1,0 +1,21 @@
+services:
+    palworld:
+        image: thijsvanloef/palworld-server-docker
+        restart: unless-stopped
+        container_name: "palworld-server-${SERVER_ID}"
+        stop_grace_period: 30s
+        ports:
+            - "${SERVER_PORT}:8211/udp"
+            - "27015:27015/udp"
+        environment:
+            PUID: 1000
+            PGID: 1000
+            PORT: 8211
+            PLAYERS: 16
+            MULTITHREADING: true
+            COMMUNITY: true
+            SERVER_PASSWORD: ""${SERVER_PASSWORD}"
+            SERVER_NAME: "GateSum ${SERVER_ID}"
+            TZ: UTC
+        volumes:
+            - ""/game-data/palworld/server_${SERVER_ID}:/palworld/"

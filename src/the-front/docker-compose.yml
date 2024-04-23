@@ -1,0 +1,10 @@
+version: "3.7"
+services:
+  the_front:
+    image: brnelsons/the-front-dedicated-server
+    build: .
+    ports:
+      - "27047:27047"
+      - "27048:27048"
+    volumes:
+      - ./data/:/thefront/
